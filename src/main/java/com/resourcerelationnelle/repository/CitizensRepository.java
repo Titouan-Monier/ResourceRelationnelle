@@ -1,6 +1,6 @@
-package com.resourcerelationnelle.citizens;
+package com.resourcerelationnelle.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import com.resourcerelationnelle.models.Citizens;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CitizensRepository extends JpaRepository<Citizens, Long> {

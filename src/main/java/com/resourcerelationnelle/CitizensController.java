@@ -1,11 +1,8 @@
 package com.resourcerelationnelle;
-import com.resourcerelationnelle.citizens.Citizens;
-import com.resourcerelationnelle.citizens.CitizensRepository;
-import com.resourcerelationnelle.citizens.CitizensService;
+import com.resourcerelationnelle.models.Citizens;
+import com.resourcerelationnelle.services.CitizensService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +31,7 @@ public class CitizensController {
     }
 
     @PutMapping("/{id}")
-    public Citizens updateCitizen(@PathVariable Long id, @RequestBody Citizens citizen) {
+    public Citizens updateCitizen(@PathVariable Integer id, @RequestBody Citizens citizen) {
         return citizenService.updateCitizen(id, citizen);
     }
 

@@ -1,8 +1,11 @@
 package com.resourcerelationnelle;
 
-import com.resourcerelationnelle.citizens.Citizens;
-import com.resourcerelationnelle.citizens.CitizensService;
+import com.resourcerelationnelle.models.Citizens;
+import com.resourcerelationnelle.models.Resources;
+import com.resourcerelationnelle.repository.ResourcesRepository;
+import com.resourcerelationnelle.services.CitizensService;
 
+import com.resourcerelationnelle.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +18,17 @@ import java.util.List;
 @Controller
 public class MainController {
     @Autowired
+    private ResourceService resourceService;
+    @Autowired
     //Instance de ma classe CitizenService
     private CitizensService citizenService;
     @GetMapping("/index")
-    public String showHomePage(){
+    public String showIndex(Model model) {
+        List<Resources> listResource = resourceService.getAllResource();
+        model.addAttribute("listResource", listResource);
+
         return "index";
     }
-//showCitizenList doit être au niveau du bon controller pour pointer vers le bon URL
 @GetMapping("/citizens")
 public String showCitizenList(Model model) {
     List<Citizens> listCitizens = citizenService.getAllCitizens();
@@ -34,13 +41,24 @@ public String showCitizenList(Model model) {
         model.addAttribute("citizen", new Citizens());
         return "citizen_form";
     }
+    @GetMapping("/creation_publication")
+    public String showResourceForm(Model model) {
+        model.addAttribute("resource", new Resources());
+        return "creation_publication";
+    }
     @GetMapping("/citizen_connexion")
     public String showLoginForm() {
         return "citizen_connexion";
     }
+
+    @PostMapping("/creation_publication")
+    public String saveResources(Resources resource){
+        resourceService.save(resource);
+        return"redirect:index";
+    }
     @PostMapping("/citizen_form")
     public String saveUser(Citizens citizen){
         citizenService.save(citizen);
-        return"redirect:/citizen_connexion";
+        return"redirect:index";
     }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/form.css}">
+    <meta charset="UTF-8">
+    <title>Création de publication</title>
+</head>
+<body>
+<div class="container">
+    <h2>Création de publication</h2>
+    <form th:action="@{/creation_publication}" method="post" th:object="${resource}">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" th:field="*{path}" required>
+        </div>
+        <div class="form-group">
+            <label >Titre</label>
+            <input type="text" th:field="*{title}" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" th:field="*{description}" required>
+        </div>
+        <div class="form-group">
+            <label>Catégories</label>
+        <select th:field="*{type}">
+            <option value="Cultures">Cultures</option>
+            <option value="Communication">Communication</option>
+            <option value="Développement personnel">Développement personnel</option>
+            <option value="Intelligence émotionnelle">Intelligence émotionnelle</option>
+            <option value="Loisirs">Loisirs</option>
+            <option value="Monde professionnel">Monde professionnel</option>
+            <option value="Qualité de vie">Qualité de vie</option>
+            <option value="Recherche de sens">Recherche de sens</option>
+            <option value="Santé physique">Santé physique</option>
+            <option value="Santé psychique">Santé psychique</option>
+            <option value="Spiritualité">Spiritualité</option>
+            <option value="Vie affective">Vie affective</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            <input type="file" th:field="*{path}">
+
+        </div>
+        <button type="submit">Créer</button>
+    </form>
+</div>
+</body>
+</html>

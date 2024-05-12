@@ -1,4 +1,4 @@
-package com.resourcerelationnelle.citizens;
+package com.resourcerelationnelle.models;
 
 import jakarta.persistence.*;
 
@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class Citizens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private Timestamp creation_date;
 
@@ -30,11 +30,11 @@ public class Citizens {
     private String firstname;
     private boolean registration;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

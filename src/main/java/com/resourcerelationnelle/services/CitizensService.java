@@ -1,6 +1,8 @@
-package com.resourcerelationnelle.citizens;
+package com.resourcerelationnelle.services;
 
 // citizenService.java
+import com.resourcerelationnelle.models.Citizens;
+import com.resourcerelationnelle.repository.CitizensRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,9 @@ import java.util.List;
 public class CitizensService {
 
         @Autowired
-        private  CitizensRepository citizensRepository;
+        private CitizensRepository citizensRepository;
 
-        public   Citizens createCitizen(Citizens citizen) {
+        public Citizens createCitizen(Citizens citizen) {
             return citizensRepository.save(citizen);
         }
 
@@ -24,7 +26,7 @@ public class CitizensService {
             return citizensRepository.findById(id).orElse(null);
         }
 
-        public  Citizens updateCitizen(Long id, Citizens citizen) {
+        public  Citizens updateCitizen(Integer id, Citizens citizen) {
             citizen.setId(id);
             return citizensRepository.save(citizen);
         }
